@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WeatherApp"
              x:Class="WeatherApp.MainPage">
+    
+    <StackLayout >
+        <Button Text="날씨확인" WidthRequest="50" 
+            HorizontalOptions="Center" Clicked="click_weather"></Button>
 
-	<Label Text="Welcome to Xamarin Forms!" 
+        <Label Text="현재 미세먼지" 
            VerticalOptions="Center" 
            HorizontalOptions="Center" />
+
+        <Label Text="" x:Name="dust" FontSize="100"/>
+    </StackLayout>
 
 </ContentPage>
