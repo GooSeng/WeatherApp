@@ -16,6 +16,7 @@ namespace WeatherApp
 
 		public async void click_weather(object sender, EventArgs e)
 		{
+<<<<<<< HEAD
 
 			now_dust.Text = address.Text + "미세먼지";
 			//var result = await API.API_SK_WeatherPlanet.getFineDust(new Data.Location(37.5714100000, 126.9658000000));
@@ -32,8 +33,10 @@ namespace WeatherApp
 		public async void test()
 		{
 
+=======
+>>>>>>> master
 //			var result = await API.API_SK_WeatherPlanet.getFineDust(new Data.Location(37.5714100000, 126.9658000000));
-			var tmp = await API.API_SK_Tmap.searchRegions("망포동");
+			var tmp = await API.API_SK_Tmap.searchRegions(address.Text);
 
 			if (tmp != null)
 			{
@@ -42,8 +45,9 @@ namespace WeatherApp
 				var result = await API.API_SK_WeatherPlanet.getFineDust(loc);
 
 				dust.Text = result.grade;
-			}
+				now_dust.Text = address.Text + "미세먼지";
 
+			}
 		}
 	}
 }
