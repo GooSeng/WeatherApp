@@ -61,8 +61,7 @@ namespace WeatherApp.API
 		{
 			//https://developers.skplanetx.com/apidoc/kor/t-map/geocoding/?leftAppId=15054956
 
-			//TODO. 좌표타입 변경 
-			var coordType = "KATECH";	//좌표 타입	
+			var coordType = "WGS84GEO";	
 			string query = url + "/geo/geocoding?version=1"
 				+ "&city_do=" + WebUtility.UrlEncode(loc.doName)
 				+ "&gu_gun=" + WebUtility.UrlEncode(loc.guName)
