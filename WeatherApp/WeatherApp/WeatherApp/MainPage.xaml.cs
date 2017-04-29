@@ -24,7 +24,7 @@ namespace WeatherApp
 		public async void test()
 		{
 //			var tmp = await API.API_SK_WeatherPlanet.getFineDust(new Data.Location(37.5714100000, 126.9658000000));
-			var tmp = await API.API_SK_Tmap.searchRegions("망포동");
+			var tmp = await API.API_SK_Tmap.searchRegions("대치동");
 		}
 	}
 }
