@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using WeatherApp.Data;
+using System.Net;
 
 namespace WeatherApp.API
 {
@@ -18,8 +19,7 @@ namespace WeatherApp.API
 		public static async Task<List<Location>> searchRegions(string searchKeyword, int count = 5, string categories = "legalDong", string searchType = "KEYWORD")
 		{
 			//https://developers.skplanetx.com/apidoc/kor/geofencing/geospatial/?leftAppId=15054956
-			FineDust dust = null;
-
+	
 			string query = url + "/geofencing/regions?version=1"
 				+ "&page=" + ""
 				+ "&count=" + count
@@ -29,7 +29,7 @@ namespace WeatherApp.API
 				+ "&resCoordType="
 				+ "&reqLon="
 				+ "&reqLat="
-				+ "&callback";
+				+ "&callback=";
 
 			var result = await WebService.getDataFromService(query, key);
 
@@ -56,49 +56,34 @@ namespace WeatherApp.API
 
 			return resultRegions;
 		}
-		/*		
-		 *		public static async Task<Location> getLoction(Location loc)
+
+		public static async Task<Location> getLoction(Location loc)
 		{
-			//https://developers.skplanetx.com/apidoc/kor/geofencing/geospatial/?leftAppId=15054956
-			FineDust dust = null;
+			//https://developers.skplanetx.com/apidoc/kor/t-map/geocoding/?leftAppId=15054956
 
-			string query = url + "/geofencing/regions?version=1"
-				+ "&page=" + ""
-				+ "&count=" + count
-				+ "&categories=" + categories
-				+ "&searchType=" + searchType
-				+ "&searchKeyword=" + searchKeyword
-				+ "&resCoordType="
-				+ "&reqLon="
-				+ "&reqLat="
-				+ "&callback";
+			//TODO. 좌표타입 변경 
+			var coordType = "KATECH";	//좌표 타입	
+			string query = url + "/geo/geocoding?version=1"
+				+ "&city_do=" + WebUtility.UrlEncode(loc.doName)
+				+ "&gu_gun=" + WebUtility.UrlEncode(loc.guName)
+				+ "&dong=" + WebUtility.UrlEncode(loc.dongName)
+				+ "&bunji=" 
+				+ "&detailAddress=" 
+				+ "&addressFlag="
+				+ "&coordType=" + coordType
+				+ "&callback=";
 
-			var result = await WebService.getDataFromService(query, key);
+		 	var result = await WebService.getDataFromService(query, key);
 
-			List<Location> resultRegions = null;
-			if (result["searchRegionsInfo"] != null)
+			if (result["coordinateInfo"] != null)
 			{
-				resultRegions = new List<Location>();
-				var searchResult = JArray.Parse(result["searchRegionsInfo"].ToString());
+				var info = result["coordinateInfo"];
 
-				foreach (var item in searchResult)
-				{
-					var regionInfo = item["regionInfo"];
-
-					var regionName = regionInfo["regionName"].ToString();
-					var gu = regionInfo["properties"]["guName"].ToString();
-					var doN = regionInfo["properties"]["doName"].ToString();
-
-					var description = regionInfo["description"].ToString();
-
-					var newItem = new Location(regionName, gu, doN, description);
-					resultRegions.Add(newItem);
-				}
+				loc.latitude = double.Parse(info["lat"].ToString());
+				loc.longitude = double.Parse(info["lon"].ToString());
 			}
 
-			return resultRegions;
+			return loc;
 		}
-
-		 */
 	}
 }

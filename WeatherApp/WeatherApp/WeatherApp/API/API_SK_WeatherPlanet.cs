@@ -32,8 +32,8 @@ namespace WeatherApp.API
 				var station = values[0]["station"];
 				var name = station["name"].ToString();
 
-				//				var lat = station["latitude"].ToString();
-				//				var lon = station["longitude"].ToString();
+				var lat = station["latitude"].ToString();
+				var lon = station["longitude"].ToString();
 
 				var time = DateTime.Parse(values[0]["timeObservation"].ToString());
 
