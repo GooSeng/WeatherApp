@@ -1,18 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WeatherApp"
              x:Class="WeatherApp.MainPage">
     
-    <StackLayout >
-        <Button Text="날씨확인" WidthRequest="50" 
+    <StackLayout Spacing="20" Padding="20" VerticalOptions="Center">
+		<Entry Placeholder="address" Text="{Binding address}" x:Name="address"  />
+        <Button Text="Weather" WidthRequest="100" 
             HorizontalOptions="Center" Clicked="click_weather"></Button>
 
         <Label Text="현재 미세먼지" 
            VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+           HorizontalOptions="Center"
+			x:Name="now_dust"/>
 
-        <Label Text="" x:Name="dust" FontSize="100"/>
+        <Label Text="" x:Name="dust" FontSize="100" VerticalOptions="Center" 
+           HorizontalOptions="Center"/>
     </StackLayout>
 
 </ContentPage>
