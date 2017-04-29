@@ -5,13 +5,14 @@
              x:Class="WeatherApp.MainPage">
     
     <StackLayout Spacing="20" Padding="20" VerticalOptions="Center">
-		<Entry Placeholder="address" Text="{Binding address}"  />
+		<Entry Placeholder="address" Text="{Binding address}" x:Name="address"  />
         <Button Text="Weather" WidthRequest="100" 
             HorizontalOptions="Center" Clicked="click_weather"></Button>
 
         <Label Text="현재 미세먼지" 
            VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+           HorizontalOptions="Center"
+			x:Name="now_dust"/>
 
         <Label Text="" x:Name="dust" FontSize="100" VerticalOptions="Center" 
            HorizontalOptions="Center"/>

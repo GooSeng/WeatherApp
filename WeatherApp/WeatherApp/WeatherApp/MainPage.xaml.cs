@@ -26,6 +26,8 @@ namespace WeatherApp
 				var result = await API.API_SK_WeatherPlanet.getFineDust(loc);
 
 				dust.Text = result.grade;
+				now_dust.Text = address.Text + "미세먼지";
+
 			}
 		}
 	}
